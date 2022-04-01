@@ -14,5 +14,6 @@ Run in `./build` directory:
 Make sure csgo is running before trying to inject  
   
 Run in project directory:  
-`chmod +x ./load` (only needed once to make sure script is executable)
-`./load`
+`chmod +x ./load` (only needed once to make sure script is executable)  
+  
+`./load` to inject
