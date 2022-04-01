@@ -1,0 +1,4 @@
+.vscode
+csgo-simple-linux-cheat.code-workspace
+build/*
+!build/.gitkeep
