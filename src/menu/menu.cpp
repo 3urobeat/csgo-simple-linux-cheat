@@ -1,0 +1,87 @@
+/*
+ * File: menu.cpp
+ * Project: menu
+ * Created Date: 01.04.2022 15:50:14
+ * Author: 3urobeat
+ * 
+ * Last Modified: 02.04.2022 18:30:44
+ * Modified By: 3urobeat
+ * 
+ * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
+ * 
+ * This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>. 
+ */
+
+
+#include "../main.h"
+
+
+//onPollEvent function from https://github.com/seksea/gamesneeze/blob/7ec40e08a9964549672da6c735567ff613262097/src/core/menu/menu.cpp
+void Menu::onPollEvent(SDL_Event* event, const int result) {
+    if (result && ImGui_ImplSDL2_ProcessEvent(event) && Menu::active) {
+        event->type = 0;
+    }
+}
+
+//onSwapWindow function (modified) from https://github.com/seksea/gamesneeze/blob/7ec40e08a9964549672da6c735567ff613262097/src/core/menu/menu.cpp
+void Menu::onSwapWindow(SDL_Window* window) {
+    //TODO: Write my own function
+
+    //Run on first call
+    if (!isInit) {
+        gl3wInit();
+        IMGUI_CHECKVERSION();
+        ImGui::CreateContext();
+        ImGui::StyleColorsDark();
+        ImGui_ImplOpenGL3_Init("#version 100");
+        ImGui_ImplSDL2_InitForOpenGL(window, nullptr);
+
+        isInit = true;
+    }
+
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplSDL2_NewFrame(window);
+
+    ImGuiIO& io = ImGui::GetIO();
+
+    int w, h;
+    SDL_GetWindowSize(window, &w, &h);
+    screenSizeX = w;
+    screenSizeY = h;
+    
+    io.DisplaySize = ImVec2((float)w, (float)h);
+
+    ImGui::NewFrame();
+
+    //Show menu and cursor if menu was activated, otherwise hide cursor
+    if (Menu::active) {
+        io.MouseDrawCursor = true;
+        Menu::showMenu();
+    } else {
+        io.MouseDrawCursor = false;
+    }
+
+    //Activate menu if openKey was pressed
+    if (ImGui::IsKeyPressed(Menu::openKey, false)) {
+        Menu::active = !Menu::active;
+    }
+
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+}
+
+
+/**
+ * Draws the menu window
+ */
+void Menu::showMenu() {
+    ImGui::SetNextWindowSize(ImVec2{400, 200});
+
+    //Show title bar
+    ImGui::Begin(("csgo-simple-linux-cheat v" + version).c_str(), &Menu::active);
+    ImGui::Text("Hello World!");
+
+    ImGui::End();
+}
