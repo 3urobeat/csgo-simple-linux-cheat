@@ -5,15 +5,22 @@ It is not meant to be used as is and is rather a WIP project for educational pur
   
 ## Building
   
-Run in `./build` directory:
-`cmake ..`  
-`make -j 6` (replace 6 with amount of CPU threads you want to dedicate)  
+Make sure included `tools` script is executable:  
+`chmod +x ./tools`
+  
+Build cheat once using `tools` script:  
+`./tools -b`
   
 ## Loading/Injecting:
 
 Make sure csgo is running before trying to inject  
   
-Run in project directory:  
-`chmod +x ./load` (only needed once to make sure script is executable)  
+Inject using `tools` script:  
+`./tools -l`  
   
-`./load` to inject
+## Unload:  
+
+**Currently broken, idk why**
+
+Unload using `tools` script:  
+`./tools -u`
