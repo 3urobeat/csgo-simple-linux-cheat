@@ -1,0 +1,155 @@
+#!/bin/bash
+
+# File: tools
+# Project: csgo-simple-linux-cheat
+# Created Date: 02.04.2022 16:20:10
+# Author: 3urobeat
+# 
+# Last Modified: 02.04.2022 16:31:16
+# Modified By: 3urobeat
+# 
+# Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
+# 
+# This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+# You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>. 
+
+
+csgo_pid=$(pidof csgo_linux64)
+filename="libcsgo-simple-linux-cheat.so"
+libname="libMangoHud.so" # pretend to be something else
+threads=6 #amount of CPU threads the script should use
+
+
+# Check if user set more threads than available
+maxThreads=$(nproc --all)
+
+if (($threads > $maxThreads)); then
+    echo "You set more threads than your CPU has available! Setting to $maxThreads..."
+    threads=$maxThreads
+fi
+
+
+# Build function
+function build {
+    cd build
+
+    echo "Refreshing Makefile using CMake..."
+    cmake ..
+
+    echo ""
+    echo "Building with make using $threads threads..."
+    make -j $threads
+    cd ..
+
+    echo ""
+    echo "Done! You can now load/inject using the '-l' flag!"
+}
+
+
+# Used load function from https://github.com/ArnoldasMk/Kali/blob/dev/Kali (modified) until I get a better understanding of gdb and injecting itself
+function load {    
+    if [ -z "$csgo_pid" ]; then
+        echo "CS:GO needs to be open before you can inject, exiting..."
+        exit 1
+    fi
+
+    # pBypass for crash dumps being sent
+    # You may also want to consider using -nobreakpad in your launch options.
+    sudo rm -rf /tmp/dumps           # Remove if it exists
+    sudo mkdir --mode=000 /tmp/dumps # Make it as root with no permissions
+
+    # Credit: Aixxe @ aixxe.net
+    if grep -q "$libname" /proc/"$csgo_pid"/maps; then
+        echo "Already injected? Exiting..."
+        exit
+    fi
+    echo "Injecting $filename from ./build as $libname..."
+
+    # https://www.kernel.org/doc/Documentation/security/Yama.txt
+    echo "2" | sudo tee /proc/sys/kernel/yama/ptrace_scope # Only allows root to inject code. This is temporary until reboot.
+
+    sudo cp "./build/$filename" "/usr/lib/${libname}"
+
+    sudo killall -19 steam
+    sudo killall -19 steamwebhelper
+
+    lib_dir_name="lib"
+    if [ $(getconf LONG_BIT) = 64 ]; then
+        lib_dir_name+="64"
+    fi
+
+    input="$(
+        sudo gdb -n -q -batch-silent \
+            -ex "set logging on" \
+            -ex "set logging file /dev/null" \
+            -ex "set logging redirect on" \
+            -ex "set auto-load safe-path /usr/share/gdb/auto-load/usr/$lib_dir_name/:/usr/$lib_dir_name/" \
+            -ex "attach $csgo_pid" \
+            -ex "set \$dlopen = (void*(*)(char*, int)) dlopen" \
+            -ex "call \$dlopen(\"/usr/lib/$libname\", 1)" \
+            -ex "detach" \
+            -ex "quit"
+    )"
+
+    sleep 1
+    sudo killall -18 steamwebhelper
+    sudo killall -18 steam
+
+    last_line="${input##*$'\n'}"
+
+    if [ "$last_line" != "\$1 = (void *) 0x0" ]; then
+        echo "Successfully injected!"
+    else
+        echo "Injection failed!"
+    fi
+}
+
+
+# Used unload function from https://github.com/ArnoldasMk/Kali/blob/dev/Kali (modified)
+function unload {
+    if grep -q "$libname" /proc/"$csgo_pid"/maps; then
+        echo "Unloading $libname..."
+        echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+
+        sudo gdb -n -q -batch-silent \
+            -ex "set logging on" \
+            -ex "set logging file /dev/null" \
+            -ex "set logging redirect on" \
+            -ex "attach $csgo_pid" \
+            -ex "set \$dlopen = (void*(*)(char*, int)) dlopen" \
+            -ex "set \$dlclose = (int(*)(void*)) dlclose" \
+            -ex "set \$library = \$dlopen(\"/usr/lib/$libname\", 6)" \
+            -ex "call \$dlclose(\$library)" \
+            -ex "call \$dlclose(\$library)" \
+            -ex "detach" \
+            -ex "quit"
+        
+        sudo rm "/usr/lib/${libname}"
+
+        echo "Unloaded!"
+    else
+        echo "Not injected? Exiting..."
+        exit
+    fi
+}
+
+
+function usage {
+    echo "Arguments:
+        -b  Build/Compile  (Run this first, only load when done)
+        -l  Load/Inject
+        -u  Unload/uninject"
+}
+
+
+while getopts 'bluh' flag; do
+    case "${flag}" in
+        b) build ;;
+        l) load ;;
+        u) unload ;;
+        h) usage ;;
+        *) usage
+            exit 1 ;;
+    esac
+done
