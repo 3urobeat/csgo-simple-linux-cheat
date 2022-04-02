@@ -15,9 +15,10 @@ sudo rm -rf /tmp/dumps           # Remove if it exists
 sudo mkdir --mode=000 /tmp/dumps # Make it as root with no permissions
 
 filename="libcsgo-simple-linux-cheat.so"
+libname="libMangoHud.so" # pretend to be something else
 
 # Credit: Aixxe @ aixxe.net
-if grep -q "$filename" /proc/"$csgo_pid"/maps; then
+if grep -q "$libname" /proc/"$csgo_pid"/maps; then
     echo "Already injected? Exiting..."
     exit
 fi
@@ -26,7 +27,7 @@ echo "Injecting $filename from build directory..."
 # https://www.kernel.org/doc/Documentation/security/Yama.txt
 echo "2" | sudo tee /proc/sys/kernel/yama/ptrace_scope # Only allows root to inject code. This is temporary until reboot.
 
-sudo cp "./build/$filename" "/usr/lib/${filename}"
+sudo cp "./build/$filename" "/usr/lib/${libname}"
 
 sudo killall -19 steam
 sudo killall -19 steamwebhelper
@@ -44,7 +45,7 @@ input="$(
         -ex "set auto-load safe-path /usr/share/gdb/auto-load/usr/$lib_dir_name/:/usr/$lib_dir_name/" \
         -ex "attach $csgo_pid" \
         -ex "set \$dlopen = (void*(*)(char*, int)) dlopen" \
-        -ex "call \$dlopen(\"/usr/lib/$filename\", 1)" \
+        -ex "call \$dlopen(\"/usr/lib/$libname\", 1)" \
         -ex "detach" \
         -ex "quit"
 )"
@@ -53,12 +54,10 @@ sleep 1
 sudo killall -18 steamwebhelper
 sudo killall -18 steam
 
-sudo rm "/usr/lib/${filename}"
-
 last_line="${input##*$'\n'}"
 
 if [ "$last_line" != "\$1 = (void *) 0x0" ]; then
     echo "Successfully injected!"
 else
-    echo "Injection failed, make sure you have compiled..."
+    echo "Injection failed!"
 fi

@@ -4,11 +4,12 @@
 
 csgo_pid=$(pidof csgo_linux64)
 filename="libcsgo-simple-linux-cheat.so"
+libname="libMangoHud.so" # pretend to be something else
 
 echo "Unloading cheat..."
 echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-if grep -q "$filename" /proc/"$csgo_pid"/maps; then
-    echo "unloading $filename"
+
+if grep -q "$libname" /proc/"$csgo_pid"/maps; then
     sudo gdb -n -q -batch-silent \
         -ex "set logging on" \
         -ex "set logging file /dev/null" \
@@ -16,11 +17,13 @@ if grep -q "$filename" /proc/"$csgo_pid"/maps; then
         -ex "attach $csgo_pid" \
         -ex "set \$dlopen = (void*(*)(char*, int)) dlopen" \
         -ex "set \$dlclose = (int(*)(void*)) dlclose" \
-        -ex "set \$library = \$dlopen(\"/usr/lib/$filename\", 6)" \
+        -ex "set \$library = \$dlopen(\"/usr/lib/$libname\", 6)" \
         -ex "call \$dlclose(\$library)" \
         -ex "call \$dlclose(\$library)" \
         -ex "detach" \
         -ex "quit"
-    sudo rm "/usr/lib/${filename}"
+    
+    sudo rm "/usr/lib/${libname}"
 fi
+
 echo "Unloaded!"
