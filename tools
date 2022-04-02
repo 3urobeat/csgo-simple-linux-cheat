@@ -15,6 +15,8 @@
 # You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>. 
 
 
+trap 'exit 130' INT # Make sure script exits on SIGINT
+
 csgo_pid=$(pidof csgo_linux64)
 filename="libcsgo-simple-linux-cheat.so"
 libname="libMangoHud.so" # pretend to be something else
@@ -43,7 +45,7 @@ function build {
     cd ..
 
     echo ""
-    echo "Done! You can now load/inject using the '-l' flag!"
+    echo "Done! You can now load/inject using the '-l' flag if no errors occurred!"
 }
 
 
