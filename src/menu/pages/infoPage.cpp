@@ -1,10 +1,10 @@
 /*
- * File: menu.h
- * Project: menu
- * Created Date: 01.04.2022 15:54:37
+ * File: infoPage.cpp
+ * Project: pages
+ * Created Date: 02.04.2022 18:18:52
  * Author: 3urobeat
  * 
- * Last Modified: 02.04.2022 18:47:21
+ * Last Modified: 02.04.2022 18:56:59
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -15,24 +15,14 @@
  */
 
 
-#include "ImGUI/imgui.h"
+#include "../../main.h"
 
 
-namespace Menu {
-    inline bool isInit = false;
-    inline bool active = true; //change to false later
-    inline int currentPage = 0;
+void Menu::showInfoPage() {
+    ImGui::Text("csgo-simple-linux-cheat");
+    ImGui::Text(("Version: " + version).c_str());
+    ImGui::Text(("Source: https://github.com/HerrEurobeat/csgo-simple-linux-cheat"));
+    ImGui::Text("");
 
-    inline auto openKey = SDL_SCANCODE_INSERT;
-
-    inline auto buttonWidth = ImVec2(75, 20);
-
-    void showMenu();
-    void onPollEvent(SDL_Event* event, const int result);
-    void onSwapWindow(SDL_Window* window);
-
-    void showAimbotPage();
-    void showVisualsPage();
-    void showMiscPage();
-    void showInfoPage();
+    ImGui::Text(("Resolution: " + std::to_string(screenSizeX) + "x" + std::to_string(screenSizeY)).c_str());
 }
