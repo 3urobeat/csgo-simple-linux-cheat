@@ -2,3 +2,4 @@
 csgo-simple-linux-cheat.code-workspace
 build/*
 !build/.gitkeep
+gdb.txt

@@ -1,10 +1,10 @@
 /*
  * File: main.h
- * Project: src
+ * Project: csgo-simple-linux-cheat
  * Created Date: 02.04.2022 11:55:11
  * Author: 3urobeat
  * 
- * Last Modified: 02.04.2022 18:26:41
+ * Last Modified: 03.04.2022 14:11:15
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>

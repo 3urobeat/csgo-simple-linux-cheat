@@ -1,10 +1,10 @@
 /*
  * File: menu.h
- * Project: menu
+ * Project: csgo-simple-linux-cheat
  * Created Date: 01.04.2022 15:54:37
  * Author: 3urobeat
  * 
- * Last Modified: 02.04.2022 18:47:21
+ * Last Modified: 03.04.2022 14:10:21
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
