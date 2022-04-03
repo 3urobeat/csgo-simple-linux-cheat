@@ -4,7 +4,7 @@
  * Created Date: 31.03.2022 22:52:29
  * Author: 3urobeat
  * 
- * Last Modified: 02.04.2022 17:06:42
+ * Last Modified: 03.04.2022 13:56:46
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -22,8 +22,8 @@
 //Called by entry point in a new thread
 void MainThread() {
 
-    //Get engine client interface thingy
-    engine = getInterface<IVEngineClient>("./bin/linux64/engine_client.so", "VEngineClient");
+    //initialize interfaces
+    Interfaces::hookInterfaces();
 
     //initialize hooks
     Hooks::initHooks();

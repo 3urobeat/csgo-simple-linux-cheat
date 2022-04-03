@@ -1,10 +1,10 @@
 /*
- * File: main.h
+ * File: interfaces.cpp
  * Project: csgo-simple-linux-cheat
- * Created Date: 02.04.2022 11:55:11
+ * Created Date: 03.04.2022 13:48:11
  * Author: 3urobeat
  * 
- * Last Modified: 03.04.2022 15:17:09
+ * Last Modified: 03.04.2022 15:15:19
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -15,22 +15,9 @@
  */
 
 
-#include <string>
-#include <dlfcn.h>
-#include <SDL2/SDL.h>
-
-#include "menu/menu.h"
-
-#include "SDK/interfaces/interfaces.h"
-#include "hooks/hooks.h"
-
-#include "menu/ImGUI/imgui.h"
-#include "menu/ImGUI/GL/gl3w.h"
-#include "menu/ImGUI/imgui_impl_sdl.h"
-#include "menu/ImGUI/imgui_impl_opengl3.h"
+#include "../../main.h"
 
 
-inline std::string version = "0.0.1";
-
-inline int screenSizeX;
-inline int screenSizeY;
+void Interfaces::hookInterfaces() {
+    engine = getInterface<IVEngineClient>("./bin/linux64/engine_client.so", "VEngineClient");
+}
