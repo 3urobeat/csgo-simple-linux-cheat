@@ -3,7 +3,7 @@
 
 #include <dlfcn.h>
 
-#include "../main.h"
+#include "../../main.h"
 
 
 template <typename T>

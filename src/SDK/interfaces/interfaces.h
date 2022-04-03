@@ -4,7 +4,7 @@
  * Created Date: 03.04.2022 12:51:04
  * Author: 3urobeat
  * 
- * Last Modified: 03.04.2022 18:29:11
+ * Last Modified: 03.04.2022 20:24:20
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -15,14 +15,10 @@
  */
 
 
-#include "headers/iClientMode.h"
-#include "headers/ivEngineClient.h"
-
 
 namespace Interfaces {
+    
     #include "getInterface.h"
-
-    inline IVEngineClient* engine;
 
     void hookInterfaces();
     

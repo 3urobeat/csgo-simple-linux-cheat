@@ -4,7 +4,7 @@
  * Created Date: 31.03.2022 22:52:29
  * Author: 3urobeat
  * 
- * Last Modified: 03.04.2022 18:03:54
+ * Last Modified: 03.04.2022 20:24:15
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -18,8 +18,10 @@
 #include <thread>
 #include "main.h"
 
+
 //Make a logger call slightly shorter
 void logger(const char* str) { std::cout << str << std::endl; }
+void logger(std::string str) { std::cout << str.c_str() << std::endl; }
 
 
 //Called by entry point in a new thread

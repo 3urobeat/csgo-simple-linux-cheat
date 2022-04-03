@@ -4,7 +4,7 @@
  * Created Date: 02.04.2022 11:55:11
  * Author: 3urobeat
  * 
- * Last Modified: 03.04.2022 17:42:14
+ * Last Modified: 03.04.2022 18:51:45
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -20,6 +20,7 @@
 #include <SDL2/SDL.h>
 
 void logger(const char* str);
+void logger(std::string str);
 
 #include "menu/menu.h"
 

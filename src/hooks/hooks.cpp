@@ -4,7 +4,7 @@
  * Created Date: 01.04.2022 17:38:11
  * Author: 3urobeat
  * 
- * Last Modified: 03.04.2022 14:10:48
+ * Last Modified: 03.04.2022 20:24:38
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -17,11 +17,14 @@
 
 #include "../main.h"
 
+
 /**
  * Initialize all hooks
  */
 void Hooks::initHooks() {
+
     Hooks::SDL::hookSDL();
+    
 }
 
 
@@ -29,5 +32,7 @@ void Hooks::initHooks() {
  * Unload hooks
  */
 void Hooks::unloadHooks() {
+
     Hooks::SDL::unhookSDL();
+    
 }
