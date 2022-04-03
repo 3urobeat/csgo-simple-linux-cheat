@@ -4,7 +4,7 @@
  * Created Date: 31.03.2022 22:52:29
  * Author: 3urobeat
  * 
- * Last Modified: 03.04.2022 13:56:46
+ * Last Modified: 03.04.2022 18:03:54
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -18,9 +18,14 @@
 #include <thread>
 #include "main.h"
 
+//Make a logger call slightly shorter
+void logger(const char* str) { std::cout << str << std::endl; }
+
 
 //Called by entry point in a new thread
 void MainThread() {
+
+    logger("Loading hooks & interfaces...");
 
     //initialize interfaces
     Interfaces::hookInterfaces();
@@ -34,11 +39,12 @@ void MainThread() {
 //Called on unload
 void __attribute__((destructor)) Shutdown() {
 
+    logger("Unloading hooks...");
+
     //unload hooks
     Hooks::unloadHooks();
 
 }
-
 
 //Entrypoint, is called on load
 int __attribute__((constructor)) Startup() {

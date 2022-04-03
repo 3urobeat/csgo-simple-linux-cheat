@@ -4,7 +4,7 @@
  * Created Date: 02.04.2022 18:18:52
  * Author: 3urobeat
  * 
- * Last Modified: 03.04.2022 14:10:35
+ * Last Modified: 03.04.2022 18:00:40
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -14,6 +14,8 @@
  * You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>. 
  */
 
+
+#include <dlfcn.h>
 
 #include "../../main.h"
 

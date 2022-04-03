@@ -1,6 +1,8 @@
 //SDL hooks for adding our ImGUI window to an existing OpenGL window (csgo)
 //I did not create this file. Source: https://github.com/seksea/gamesneeze/blob/7ec40e08a9964549672da6c735567ff613262097/src/core/hooks/sdlhook.cpp
 
+#include <dlfcn.h>
+
 #include "../main.h"
 
 

@@ -4,7 +4,7 @@
  * Created Date: 01.04.2022 15:50:14
  * Author: 3urobeat
  * 
- * Last Modified: 03.04.2022 14:10:27
+ * Last Modified: 03.04.2022 16:35:45
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -79,7 +79,7 @@ void Menu::onSwapWindow(SDL_Window* window) {
 void Menu::showMenu() {
 
     //Show title bar of window
-    ImGui::Begin(("csgo-simple-linux-cheat v" + version).c_str(), &Menu::active);
+    ImGui::Begin(("csgo-simple-linux-cheat v" + version + " by 3urobeat").c_str(), &Menu::active);
 
     //Show buttons for page selection that will change the currentPage value
     if (ImGui::Button("Aimbot", buttonWidth)) Menu::currentPage = 0;
