@@ -4,7 +4,7 @@
  * Created Date: 01.04.2022 15:54:37
  * Author: 3urobeat
  * 
- * Last Modified: 03.04.2022 14:10:21
+ * Last Modified: 04.04.2022 12:46:58
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -16,6 +16,9 @@
 
 
 #include "ImGUI/imgui.h"
+#include "ImGUI/GL/gl3w.h"
+#include "ImGUI/imgui_impl_sdl.h"
+#include "ImGUI/imgui_impl_opengl3.h"
 
 
 namespace Menu {

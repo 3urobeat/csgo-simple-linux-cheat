@@ -4,7 +4,7 @@
  * Created Date: 01.04.2022 17:38:11
  * Author: 3urobeat
  * 
- * Last Modified: 03.04.2022 20:24:38
+ * Last Modified: 04.04.2022 13:00:53
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -23,7 +23,7 @@
  */
 void Hooks::initHooks() {
 
-    Hooks::SDL::hookSDL();
+    SDL::hookSDL();
     
 }
 

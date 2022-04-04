@@ -4,7 +4,7 @@
  * Created Date: 02.04.2022 11:55:11
  * Author: 3urobeat
  * 
- * Last Modified: 03.04.2022 18:51:45
+ * Last Modified: 04.04.2022 12:47:08
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -27,10 +27,7 @@ void logger(std::string str);
 #include "SDK/interfaces/interfaces.h"
 #include "hooks/hooks.h"
 
-#include "menu/ImGUI/imgui.h"
-#include "menu/ImGUI/GL/gl3w.h"
-#include "menu/ImGUI/imgui_impl_sdl.h"
-#include "menu/ImGUI/imgui_impl_opengl3.h"
+#include "modules/modules.h"
 
 
 inline std::string version = "0.0.1";
