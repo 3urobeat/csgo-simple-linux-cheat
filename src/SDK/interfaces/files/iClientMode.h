@@ -1,10 +1,10 @@
 /*
- * File: interfaces.h
+ * File: iClientMode.cpp
  * Project: csgo-simple-linux-cheat
- * Created Date: 03.04.2022 12:51:04
+ * Created Date: 04.04.2022 14:49:05
  * Author: 3urobeat
  * 
- * Last Modified: 04.04.2022 22:30:24
+ * Last Modified: 04.04.2022 20:25:53
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -15,20 +15,6 @@
  */
 
 
-#pragma once
-
-#include "files/cUserCmd.h"
-#include "files/iBaseClientDLL.h"
-#include "files/iClientMode.h"
-
-
-namespace Interfaces {
+class IClientMode {
     
-    #include "getInterface.h"
-    
-    inline IBaseClientDLL* client;
-    inline IClientMode* clientMode;
-
-    void hookInterfaces();
-    
-}
+};

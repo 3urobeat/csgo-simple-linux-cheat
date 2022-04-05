@@ -4,7 +4,7 @@
  * Created Date: 01.04.2022 17:38:11
  * Author: 3urobeat
  * 
- * Last Modified: 04.04.2022 13:00:53
+ * Last Modified: 05.04.2022 20:06:56
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -23,7 +23,11 @@
  */
 void Hooks::initHooks() {
 
+    //hook SDL so we can draw our menu
     SDL::hookSDL();
+    
+    //Hook createMove
+    CreateMove::originalCreateMove = (CreateMove::createMoveFuncSignature)VMT::hookVMT(Interfaces::clientMode, (void*)CreateMove::createMoveFunc, 25);
     
 }
 
@@ -33,6 +37,8 @@ void Hooks::initHooks() {
  */
 void Hooks::unloadHooks() {
 
-    Hooks::SDL::unhookSDL();
+    SDL::unhookSDL();
+
+    VMT::hookVMT(Interfaces::clientMode, (void*)CreateMove::originalCreateMove, 25);
     
 }

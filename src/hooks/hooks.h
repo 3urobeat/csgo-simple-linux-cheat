@@ -4,7 +4,7 @@
  * Created Date: 01.04.2022 17:38:16
  * Author: 3urobeat
  * 
- * Last Modified: 03.04.2022 14:10:46
+ * Last Modified: 05.04.2022 19:33:25
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -35,4 +35,23 @@ namespace Hooks {
         void SwapWindow(SDL_Window* window);
         int PollEvent(SDL_Event* event);
     }
-} 
+
+    //VMT hook
+    namespace VMT {
+
+        void* hookVMT(void* instance, void* hook, int offset);
+
+    }
+
+    //createMove hook
+    namespace CreateMove {
+        
+        using createMoveFuncSignature = bool (*)(void *thisptr, float flInputSampleTime, CUserCmd *cmd);
+        bool createMoveFunc(void *thisptr, float flInputSampleTime, CUserCmd *cmd);
+        inline createMoveFuncSignature originalCreateMove;
+
+        inline bool sendPacket;
+        
+    }
+    
+}

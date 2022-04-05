@@ -1,10 +1,10 @@
 /*
- * File: interfaces.cpp
+ * File: createmove.cpp
  * Project: csgo-simple-linux-cheat
- * Created Date: 03.04.2022 13:48:11
+ * Created Date: 03.04.2022 00:17:28
  * Author: 3urobeat
  * 
- * Last Modified: 05.04.2022 20:10:45
+ * Last Modified: 05.04.2022 20:08:41
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -17,18 +17,26 @@
 
 #include "../../main.h"
 
-typedef IClientMode* (*getClientModeFunc)();
 
+//Hooks createMove, which is called on every tick, and can "send" commands
+bool Hooks::CreateMove::createMoveFunc(void *thisptr, float flInputSampleTime, CUserCmd *cmd) {
 
-void Interfaces::hookInterfaces() {
-
-    client = getInterface<IBaseClientDLL>("./csgo/bin/linux64/client_client.so", "VClient");
-
-    //Get IClientMode - Source: https://github.com/seksea/gamesneeze/blob/master/src/sdk/interfaces/interfaces.cpp
-    //TODO: Make myself
-    uintptr_t hudProcessInput = reinterpret_cast<uintptr_t>(getVTable(client)[10]);
-    getClientModeFunc GetClientMode = reinterpret_cast<getClientModeFunc>(getAbsoluteAddress(hudProcessInput + 11, 1, 5));
-
-    clientMode = GetClientMode();
+    //Call the original function before doing anything else
+    const bool res = originalCreateMove(thisptr, flInputSampleTime, cmd); 
     
+
+    if (!cmd->tick_count != 0) {
+        
+        //https://www.unknowncheats.me/forum/counterstrike-global-offensive/290258-updating-bsendpacket-linux.html
+        uintptr_t *rbp;
+        asm volatile("mov %%rbp, %0" : "=r"(rbp));
+        bool *sendPacket = ((*(bool **)rbp) - (int)24);
+        CreateMove::sendPacket = true;
+
+        //Run our modules
+        
+
+    }
+
+    return res;
 }
