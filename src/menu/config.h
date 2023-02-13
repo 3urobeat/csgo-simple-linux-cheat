@@ -4,7 +4,7 @@
  * Created Date: 02.04.2022 19:50:19
  * Author: 3urobeat
  * 
- * Last Modified: 13.02.2023 16:39:04
+ * Last Modified: 13.02.2023 21:50:31
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -19,7 +19,14 @@
 namespace Config {
 
     namespace Aimbot {
+        inline bool  enabled = false;
+        inline float fov = 0.0;
+        inline float smoothness = 0.0;
+        inline int   hitboxSelected = 0; // Order: Head, Neck, Chest, Stomach, Pelvis
+        inline bool  silentAimEnabled = false;
 
+        inline bool triggerbotEnabled = false;
+        inline int  triggerbotDelay = 0;
     }
 
     namespace Visuals {
