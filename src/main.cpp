@@ -4,7 +4,7 @@
  * Created Date: 31.03.2022 22:52:29
  * Author: 3urobeat
  * 
- * Last Modified: 03.04.2022 20:24:15
+ * Last Modified: 13.02.2023 17:04:17
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -19,12 +19,18 @@
 #include "main.h"
 
 
-//Make a logger call slightly shorter
+// Make a logger call slightly shorter
 void logger(const char* str) { std::cout << str << std::endl; }
 void logger(std::string str) { std::cout << str.c_str() << std::endl; }
 
 
-//Called by entry point in a new thread
+// Assigning functions to be executed before and
+// after main()
+void __attribute__((constructor)) libLoad();
+void __attribute__((destructor))  libUnload();
+
+
+// Called by entry point in a new thread
 void MainThread() {
 
     logger("Loading hooks & interfaces...");
@@ -38,21 +44,21 @@ void MainThread() {
 }
 
 
-//Called on unload
-void __attribute__((destructor)) Shutdown() {
+// Entrypoint, is called on load
+void libLoad() {
+    std::thread mainThread(MainThread); //run cheat itself in new thread
+    
+    //...and detach thread
+    mainThread.detach();
+}
+
+
+// Called on unload
+void libUnload() {
 
     logger("Unloading hooks...");
 
     //unload hooks
     Hooks::unloadHooks();
 
-}
-
-//Entrypoint, is called on load
-int __attribute__((constructor)) Startup() {
-    std::thread mainThread(MainThread); //run cheat itself in new thread
-    
-    //...and detach thread
-	mainThread.detach();
-    return 0;
 }

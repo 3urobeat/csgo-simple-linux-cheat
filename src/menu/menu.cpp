@@ -4,7 +4,7 @@
  * Created Date: 01.04.2022 15:50:14
  * Author: 3urobeat
  * 
- * Last Modified: 03.04.2022 16:35:45
+ * Last Modified: 13.02.2023 16:49:44
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -18,18 +18,18 @@
 #include "../main.h"
 
 
-//onPollEvent function from https://github.com/seksea/gamesneeze/blob/7ec40e08a9964549672da6c735567ff613262097/src/core/menu/menu.cpp
+// onPollEvent function from https://github.com/seksea/gamesneeze/blob/7ec40e08a9964549672da6c735567ff613262097/src/core/menu/menu.cpp
 void Menu::onPollEvent(SDL_Event* event, const int result) {
     if (result && ImGui_ImplSDL2_ProcessEvent(event) && Menu::active) {
         event->type = 0;
     }
 }
 
-//onSwapWindow function (modified) from https://github.com/seksea/gamesneeze/blob/7ec40e08a9964549672da6c735567ff613262097/src/core/menu/menu.cpp
+// onSwapWindow function (modified) from https://github.com/seksea/gamesneeze/blob/7ec40e08a9964549672da6c735567ff613262097/src/core/menu/menu.cpp
 void Menu::onSwapWindow(SDL_Window* window) {
-    //TODO: Write my own function
+    // TODO: Write my own function
 
-    //Run on first call
+    // Run on first call
     if (!isInit) {
         gl3wInit();
         IMGUI_CHECKVERSION();
@@ -55,7 +55,7 @@ void Menu::onSwapWindow(SDL_Window* window) {
 
     ImGui::NewFrame();
 
-    //Show menu and cursor if menu was activated, otherwise hide cursor
+    // Show menu and cursor if menu was activated, otherwise hide cursor
     if (Menu::active) {
         io.MouseDrawCursor = true;
         Menu::showMenu();
@@ -63,7 +63,7 @@ void Menu::onSwapWindow(SDL_Window* window) {
         io.MouseDrawCursor = false;
     }
 
-    //Activate menu if openKey was pressed
+    // Activate menu if openKey was pressed
     if (ImGui::IsKeyPressed(Menu::openKey, false)) {
         Menu::active = !Menu::active;
     }
@@ -78,10 +78,11 @@ void Menu::onSwapWindow(SDL_Window* window) {
  */
 void Menu::showMenu() {
 
-    //Show title bar of window
+    // Show title bar of window
     ImGui::Begin(("csgo-simple-linux-cheat v" + version + " by 3urobeat").c_str(), &Menu::active);
 
-    //Show buttons for page selection that will change the currentPage value
+
+    // Show buttons for page selection that will change the currentPage value
     if (ImGui::Button("Aimbot", buttonWidth)) Menu::currentPage = 0;
     
     ImGui::SameLine();
@@ -93,7 +94,8 @@ void Menu::showMenu() {
     ImGui::SameLine();
     if (ImGui::Button("Info", buttonWidth)) Menu::currentPage = 3;
 
-    //show desired page
+
+    // Show desired page
     switch (currentPage) {
         case 1:
             Menu::showVisualsPage();

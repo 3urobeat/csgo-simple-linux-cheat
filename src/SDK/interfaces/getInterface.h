@@ -4,7 +4,7 @@
  * Created Date: 03.04.2022 15:38:59
  * Author: 3urobeat
  * 
- * Last Modified: 03.04.2022 18:23:52
+ * Last Modified: 13.02.2023 16:45:18
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -18,7 +18,7 @@
 #include <dlfcn.h>
 
 
-//https://github.com/ValveSoftware/source-sdk-2013/blob/0d8dceea4310fde5706b3ce1c70609d72a38efdf/sp/src/public/tier1/interface.h#L69
+// https://github.com/ValveSoftware/source-sdk-2013/blob/0d8dceea4310fde5706b3ce1c70609d72a38efdf/sp/src/public/tier1/interface.h#L69
 typedef void* (*InstantiateInterfaceFn)();
 
 class InterfaceReg {
@@ -29,42 +29,42 @@ public:
 };
 
 
-//Helper function to dynamically load interfaces
+// Helper function to dynamically load interfaces
 template <typename T>
 T* getInterface(const char* libname, const char* name, bool exactVersion = false) {
 
-    void* handle = dlopen(libname, RTLD_NOLOAD | RTLD_NOW | RTLD_LOCAL); //idk what the __mode param really does, the docs don't help much: https://www.ibm.com/docs/en/zos/2.3.0?topic=functions-dlopen-gain-access-dynamic-link-library  ...but gamesneeze & Kali uses those soooo :shrug:
+    void* handle = dlopen(libname, RTLD_NOLOAD | RTLD_NOW | RTLD_LOCAL); // idk what the __mode param really does, the docs don't help much: https://www.ibm.com/docs/en/zos/2.3.0?topic=functions-dlopen-gain-access-dynamic-link-library  ...but gamesneeze & Kali uses those soooo :shrug:
 
-    //Check if lib couldn't be found
+    // Check if lib couldn't be found
     if (!handle) {
         logger("getInterface() error: Could not open library!");
 
-        //close lib and return nothing
+        // Close lib and return nothing
         dlclose(handle);
         return nullptr;
     }
 
-    //Get address of interface function
+    // Get address of interface function
     void* addr = dlsym(handle, "s_pInterfaceRegs");
 
-    //Check if function couldn't be found
+    // Check if function couldn't be found
     if (!addr) {
         logger("getInterface() error: Function address could not be found!");
 
-        //close lib and return nothing
+        // Close lib and return nothing
         dlclose(handle);
         return nullptr;
     }
 
-    //list all interfaces and close lib afterwards
+    // List all interfaces and close lib afterwards
     InterfaceReg* interfaces = *reinterpret_cast<InterfaceReg**>(addr);
 
     dlclose(handle);
 
-    //loop through all interfaces
+    // Loop through all interfaces
     for (InterfaceReg* cur = interfaces; cur; cur = cur->m_pNext) {
 
-        //Check if interface equals name, once with exact version and once without
+        // Check if interface equals name, once with exact version and once without
         if (exactVersion) {
             if (strcmp(cur->m_pName, name) == 0) return reinterpret_cast<T*>(cur->m_CreateFn());
         } else {

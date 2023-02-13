@@ -4,7 +4,7 @@
  * Created Date: 04.04.2022 14:46:32
  * Author: 3urobeat
  * 
- * Last Modified: 05.04.2022 20:04:26
+ * Last Modified: 13.02.2023 16:50:24
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -19,7 +19,8 @@
 
 #include "../../vector.h"
 
-//https://github.com/ValveSoftware/source-sdk-2013/blob/0d8dceea4310fde5706b3ce1c70609d72a38efdf/sp/src/game/shared/usercmd.h
+
+// https://github.com/ValveSoftware/source-sdk-2013/blob/0d8dceea4310fde5706b3ce1c70609d72a38efdf/sp/src/game/shared/usercmd.h
 struct CUserCmd {
     virtual ~CUserCmd() {}; //this seems to be important
     int command_number;
@@ -42,8 +43,7 @@ struct CUserCmd {
 };
 
 
-enum CommandButtons : int
-{
+enum CommandButtons : int {
     IN_ATTACK = (1 << 0),
     IN_JUMP = (1 << 1),
     IN_DUCK = (1 << 2),

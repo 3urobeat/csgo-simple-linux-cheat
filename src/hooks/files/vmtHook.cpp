@@ -1,22 +1,26 @@
-//Source: https://github.com/seksea/gamesneeze/blob/15f087eb882d5d5b8a1b333ab249cdb7fa17098b/src/core/hooks/vmt.cpp
-//TODO: Make myself
+// Source: https://github.com/seksea/gamesneeze/blob/15f087eb882d5d5b8a1b333ab249cdb7fa17098b/src/core/hooks/vmt.cpp
+// TODO: Make myself
 
 #include "../../main.h"
 #include <stdint.h>
 #include <unistd.h>
 #include <sys/mman.h>
 
+
 int pagesize = sysconf(_SC_PAGE_SIZE);
 int pagemask = ~(pagesize-1);
+
 
 int unprotect(void* region) {
     mprotect((void*) ((intptr_t)region & pagemask), pagesize, PROT_READ|PROT_WRITE|PROT_EXEC);
     return PROT_READ|PROT_EXEC;
 }
 
+
 void protect(void* region, int protection) {
     mprotect((void*) ((intptr_t)region & pagemask), pagesize, protection);
 }
+
 
 void *Hooks::VMT::hookVMT(void* instance, void* hook, int offset) {
     intptr_t vtable = *((intptr_t*)instance);

@@ -4,7 +4,7 @@
  * Created Date: 04.04.2022 20:25:38
  * Author: 3urobeat
  * 
- * Last Modified: 04.04.2022 20:45:02
+ * Last Modified: 13.02.2023 16:50:40
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -15,7 +15,7 @@
  */
 
 
-//I wasn't able to find this (I guess it would be in the SDK?) but the other cheats are using exactly this list sooo
+// I wasn't able to find this (I guess it would be in the SDK?) but the other cheats are using exactly this list sooo
 enum EClassIds {
     CAI_BaseNPC = 0,
     CAK47,

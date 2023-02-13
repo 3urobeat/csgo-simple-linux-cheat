@@ -4,7 +4,7 @@
  * Created Date: 04.04.2022 20:04:28
  * Author: 3urobeat
  * 
- * Last Modified: 04.04.2022 22:31:09
+ * Last Modified: 13.02.2023 16:50:04
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -23,6 +23,7 @@
 
 struct RecvProp;
 
+
 // https://github.com/ValveSoftware/source-sdk-2013/blob/0d8dceea4310fde5706b3ce1c70609d72a38efdf/mp/src/public/dt_recv.h#L172
 struct RecvTable {
 	RecvProp *m_pProps;
@@ -32,6 +33,7 @@ struct RecvTable {
 	bool m_bInitialized;
 	bool m_bInMainList;
 };
+
 
 // https://github.com/ValveSoftware/source-sdk-2013/blob/0d8dceea4310fde5706b3ce1c70609d72a38efdf/mp/src/public/client_class.h#L38
 class IClientNetworkable;

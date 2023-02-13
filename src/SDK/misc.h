@@ -1,5 +1,5 @@
-//Used from here for now: https://github.com/seksea/gamesneeze/blob/15f087eb882d5d5b8a1b333ab249cdb7fa17098b/src/utils/utils.hpp
-//TODO: Make myself
+// Used from here for now: https://github.com/seksea/gamesneeze/blob/15f087eb882d5d5b8a1b333ab249cdb7fa17098b/src/utils/utils.hpp
+// TODO: Make myself
 
 inline uintptr_t getAbsoluteAddress(uintptr_t ptr, int offset, int size) {
 	return ptr + *reinterpret_cast<int32_t*>(ptr + offset) + size;

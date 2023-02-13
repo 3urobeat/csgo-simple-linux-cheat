@@ -4,7 +4,7 @@
  * Created Date: 01.04.2022 17:38:16
  * Author: 3urobeat
  * 
- * Last Modified: 05.04.2022 19:33:25
+ * Last Modified: 13.02.2023 16:47:49
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -22,7 +22,8 @@ namespace Hooks {
     void initHooks();
     void unloadHooks();
 
-    //SDL hooks
+
+    // SDL hooks
     namespace SDL {
         void hookSDL();
         void unhookSDL();
@@ -36,14 +37,16 @@ namespace Hooks {
         int PollEvent(SDL_Event* event);
     }
 
-    //VMT hook
+
+    // VMT hook
     namespace VMT {
 
         void* hookVMT(void* instance, void* hook, int offset);
 
     }
 
-    //createMove hook
+
+    // createMove hook
     namespace CreateMove {
         
         using createMoveFuncSignature = bool (*)(void *thisptr, float flInputSampleTime, CUserCmd *cmd);

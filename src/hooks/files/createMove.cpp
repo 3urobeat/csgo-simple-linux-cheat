@@ -4,7 +4,7 @@
  * Created Date: 03.04.2022 00:17:28
  * Author: 3urobeat
  * 
- * Last Modified: 05.04.2022 20:08:41
+ * Last Modified: 13.02.2023 16:46:07
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -18,22 +18,23 @@
 #include "../../main.h"
 
 
-//Hooks createMove, which is called on every tick, and can "send" commands
+// Hooks createMove, which is called on every tick, and can "send" commands
 bool Hooks::CreateMove::createMoveFunc(void *thisptr, float flInputSampleTime, CUserCmd *cmd) {
 
-    //Call the original function before doing anything else
+    // Call the original function before doing anything else
     const bool res = originalCreateMove(thisptr, flInputSampleTime, cmd); 
     
 
     if (!cmd->tick_count != 0) {
         
-        //https://www.unknowncheats.me/forum/counterstrike-global-offensive/290258-updating-bsendpacket-linux.html
+        // https://www.unknowncheats.me/forum/counterstrike-global-offensive/290258-updating-bsendpacket-linux.html
         uintptr_t *rbp;
         asm volatile("mov %%rbp, %0" : "=r"(rbp));
         bool *sendPacket = ((*(bool **)rbp) - (int)24);
         CreateMove::sendPacket = true;
 
-        //Run our modules
+
+        // Call our modules
         
 
     }

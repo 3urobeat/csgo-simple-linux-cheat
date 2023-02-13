@@ -1,4 +1,4 @@
-//Source: https://github.com/seksea/gamesneeze/blob/15f087eb882d5d5b8a1b333ab249cdb7fa17098b/src/sdk/classes/vector.h
+// Source: https://github.com/seksea/gamesneeze/blob/15f087eb882d5d5b8a1b333ab249cdb7fa17098b/src/sdk/classes/vector.h
 
 
 #pragma GCC diagnostic ignored "-Wunused-value"

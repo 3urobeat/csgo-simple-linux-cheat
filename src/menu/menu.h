@@ -4,7 +4,7 @@
  * Created Date: 01.04.2022 15:54:37
  * Author: 3urobeat
  * 
- * Last Modified: 04.04.2022 12:46:58
+ * Last Modified: 13.02.2023 16:49:48
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -23,7 +23,7 @@
 
 namespace Menu {
     inline bool isInit = false;
-    inline bool active = true; //change to false later
+    inline bool active = true; // Change to false later
     inline int currentPage = 0;
 
     inline auto openKey = SDL_SCANCODE_INSERT;

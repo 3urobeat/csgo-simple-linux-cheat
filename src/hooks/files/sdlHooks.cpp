@@ -1,5 +1,5 @@
-//SDL hooks for adding our ImGUI window to an existing OpenGL window (csgo)
-//I did not create this file. Source: https://github.com/seksea/gamesneeze/blob/7ec40e08a9964549672da6c735567ff613262097/src/core/hooks/sdlhook.cpp
+// SDL hooks for adding our ImGUI window to an existing OpenGL window (csgo)
+// I did not create this file. Source: https://github.com/seksea/gamesneeze/blob/7ec40e08a9964549672da6c735567ff613262097/src/core/hooks/sdlhook.cpp
 
 #include <dlfcn.h>
 
@@ -28,7 +28,7 @@ void Hooks::SDL::SwapWindow(SDL_Window* window) {
 }
 
 
-//Hook SDL, called on load
+// Hook SDL, called on load
 void Hooks::SDL::hookSDL() {
     const auto libSDL = dlopen("libSDL2-2.0.so.0", RTLD_LAZY | RTLD_NOLOAD);
 
@@ -36,17 +36,17 @@ void Hooks::SDL::hookSDL() {
     if (swapWindowAddr) {
         swapWindow = *reinterpret_cast<decltype(swapWindow)*>(swapWindowAddr);
         *reinterpret_cast<decltype(SwapWindow)**>(swapWindowAddr) = SwapWindow;
-    } //add else for error handling
+    } // Add else for error handling
 
     pollEventAddr = relativeToAbsolute<uintptr_t>(uintptr_t(dlsym(libSDL, "SDL_PollEvent")) + 2);
     if (pollEventAddr) {
         pollEvent = *reinterpret_cast<decltype(pollEvent)*>(pollEventAddr);
         *reinterpret_cast<decltype(PollEvent)**>(pollEventAddr) = PollEvent;
-    } //add else for error handling
+    } // Add else for error handling
 }
 
 
-//unhook SDL, called on unload
+// Unhook SDL, called on unload
 void Hooks::SDL::unhookSDL() {
     *reinterpret_cast<decltype(swapWindow)*>(swapWindowAddr) = swapWindow;
     *reinterpret_cast<decltype(pollEvent)*>(pollEventAddr) = pollEvent;
