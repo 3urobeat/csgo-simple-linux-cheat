@@ -22,7 +22,9 @@
 void logger(const char* str);
 void logger(std::string str);
 
+
 #include "menu/menu.h"
+#include "menu/config.h"
 
 #include "SDK/interfaces/interfaces.h"
 #include "hooks/hooks.h"

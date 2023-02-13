@@ -1,10 +1,10 @@
 /*
- * File: infoPage.cpp
+ * File: config.h
  * Project: csgo-simple-linux-cheat
- * Created Date: 02.04.2022 18:18:52
+ * Created Date: 02.04.2022 19:50:19
  * Author: 3urobeat
  * 
- * Last Modified: 04.04.2022 12:59:03
+ * Last Modified: 13.02.2023 16:36:58
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -15,18 +15,19 @@
  */
 
 
-#include <dlfcn.h>
+// Stores all module settings in one place
+namespace Config {
 
-#include "../../main.h"
+    namespace Aimbot {
 
+    }
 
-void Menu::showInfoPage() {
-    ImGui::Text( "csgo-simple-linux-cheat");
-    ImGui::Text(("Version: " + version).c_str());
-    ImGui::Text( "Author:  3urobeat");
-    ImGui::Text(("Source:  https://github.com/HerrEurobeat/csgo-simple-linux-cheat"));
-    ImGui::Text("");
+    namespace Visuals {
 
-    ImGui::Text(("Resolution: " + std::to_string(screenSizeX) + "x" + std::to_string(screenSizeY)).c_str());
-    ImGui::Text(("Bhop enabled: " + std::to_string(Config::Misc::bhopEnabled)).c_str());
+    }
+
+    namespace Misc {
+
+    }
+    
 }
