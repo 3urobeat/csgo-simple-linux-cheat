@@ -1,10 +1,10 @@
 /*
- * File: config.h
+ * File: bhop.cpp
  * Project: csgo-simple-linux-cheat
- * Created Date: 02.04.2022 19:50:19
+ * Created Date: 02.04.2022 20:31:50
  * Author: 3urobeat
  * 
- * Last Modified: 13.02.2023 16:39:04
+ * Last Modified: 13.02.2023 21:48:31
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -15,19 +15,11 @@
  */
 
 
-// Stores all module settings in one place
-namespace Config {
+#include "../main.h"
 
-    namespace Aimbot {
 
-    }
-
-    namespace Visuals {
-
-    }
-
-    namespace Misc {
-        inline bool bhopEnabled = false;
-    }
+void Modules::Bhop::run(CUserCmd *cmd) {
     
+    if (!Config::Misc::bhopEnabled) return; // Check if module is enabled
+
 }

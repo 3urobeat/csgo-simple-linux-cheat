@@ -4,7 +4,7 @@
  * Created Date: 03.04.2022 00:17:28
  * Author: 3urobeat
  * 
- * Last Modified: 13.02.2023 16:46:07
+ * Last Modified: 13.02.2023 19:03:18
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -35,7 +35,7 @@ bool Hooks::CreateMove::createMoveFunc(void *thisptr, float flInputSampleTime, C
 
 
         // Call our modules
-        
+        Modules::Bhop::run(cmd);
 
     }
 
