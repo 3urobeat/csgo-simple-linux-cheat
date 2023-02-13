@@ -4,7 +4,7 @@
  * Created Date: 31.03.2022 22:52:29
  * Author: 3urobeat
  * 
- * Last Modified: 13.02.2023 17:04:17
+ * Last Modified: 13.02.2023 19:58:14
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -24,8 +24,7 @@ void logger(const char* str) { std::cout << str << std::endl; }
 void logger(std::string str) { std::cout << str.c_str() << std::endl; }
 
 
-// Assigning functions to be executed before and
-// after main()
+// Assigning functions to be executed before and after main()
 void __attribute__((constructor)) libLoad();
 void __attribute__((destructor))  libUnload();
 
@@ -35,10 +34,10 @@ void MainThread() {
 
     logger("Loading hooks & interfaces...");
 
-    //initialize interfaces
-    Interfaces::hookInterfaces();
+    // Initialize interfaces
+    Interfaces::initInterfaces();
 
-    //initialize hooks
+    // Initialize hooks
     Hooks::initHooks();
     
 }
@@ -46,19 +45,19 @@ void MainThread() {
 
 // Entrypoint, is called on load
 void libLoad() {
-    std::thread mainThread(MainThread); //run cheat itself in new thread
+    std::thread mainThread(MainThread); // Run the cheat itself in a new thread
     
-    //...and detach thread
+    // ...and detach thread
     mainThread.detach();
 }
 
 
-// Called on unload
+// Called on unload (does somehow not work atm)
 void libUnload() {
 
     logger("Unloading hooks...");
 
-    //unload hooks
+    // Unload hooks
     Hooks::unloadHooks();
 
 }

@@ -1,15 +1,33 @@
-// Used from here for now: https://github.com/seksea/gamesneeze/blob/15f087eb882d5d5b8a1b333ab249cdb7fa17098b/src/utils/utils.hpp
-// TODO: Make myself
+/*
+ * File: misc.h
+ * Project: csgo-simple-linux-cheat
+ * Created Date: 04.04.2022 22:30:35
+ * Author: 3urobeat
+ * 
+ * Last Modified: 13.02.2023 21:39:43
+ * Modified By: 3urobeat
+ */
 
-inline uintptr_t getAbsoluteAddress(uintptr_t ptr, int offset, int size) {
-	return ptr + *reinterpret_cast<int32_t*>(ptr + offset) + size;
+// Credit: https://github.com/seksea/gamesneeze/blob/master/src/utils/utils.hpp
+// I'm currently not sure how this works completely
+
+#pragma once
+
+
+// TODO: Add function docs
+
+
+inline uintptr_t getAbsoluteAddress(uintptr_t pointer, int offset, int size) {
+	return pointer + *reinterpret_cast<int32_t *>(pointer + offset) + size;
 }
 
-inline void**& getVTable(void* c, size_t offset = 0) {
-	return *reinterpret_cast<void***>((size_t)c + offset);
+
+inline void**& getVTable(void *c, size_t offset = 0) {
+	return *reinterpret_cast<void ***>((size_t) c + offset);
 }
+
 
 template <typename T>
-inline T getVirtualFunc(void* c, size_t i, size_t offset = 0) {
+inline T getVirtualFunc(void *c, size_t i, size_t offset = 0) {
     return reinterpret_cast<T>(getVTable(c, offset)[i]);
 }
