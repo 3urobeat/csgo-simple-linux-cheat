@@ -4,7 +4,7 @@
  * Created Date: 03.04.2022 13:48:11
  * Author: 3urobeat
  * 
- * Last Modified: 05.04.2022 20:10:45
+ * Last Modified: 13.02.2023 21:23:39
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -17,18 +17,17 @@
 
 #include "../../main.h"
 
-typedef IClientMode* (*getClientModeFunc)();
+
+// Gets all the interfaces we care about
+void Interfaces::initInterfaces() {
+
+    // Get interfaces of the functions I'm trying to "overwrite"/intercept/whatever
+    IBaseClientDLL *client = getInterface<IBaseClientDLL>("./csgo/bin/linux64/client_client.so", "VClient");
 
 
-void Interfaces::hookInterfaces() {
-
-    client = getInterface<IBaseClientDLL>("./csgo/bin/linux64/client_client.so", "VClient");
-
-    //Get IClientMode - Source: https://github.com/seksea/gamesneeze/blob/master/src/sdk/interfaces/interfaces.cpp
-    //TODO: Make myself
+    // Get clientMode // TODO: I might need typedefs, look at gamesneeze & Kali
     uintptr_t hudProcessInput = reinterpret_cast<uintptr_t>(getVTable(client)[10]);
-    getClientModeFunc GetClientMode = reinterpret_cast<getClientModeFunc>(getAbsoluteAddress(hudProcessInput + 11, 1, 5));
-
-    clientMode = GetClientMode();
     
+    clientMode = reinterpret_cast<IClientMode *>(getAbsoluteAddress(hudProcessInput + 11, 1, 5)); // Needed for createMove
+
 }

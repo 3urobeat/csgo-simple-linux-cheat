@@ -4,7 +4,7 @@
  * Created Date: 03.04.2022 12:51:04
  * Author: 3urobeat
  * 
- * Last Modified: 04.04.2022 22:30:24
+ * Last Modified: 13.02.2023 21:17:55
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -17,18 +17,21 @@
 
 #pragma once
 
+
+#include "getInterface.h"
+
 #include "files/cUserCmd.h"
 #include "files/iBaseClientDLL.h"
 #include "files/iClientMode.h"
 
 
 namespace Interfaces {
-    
-    #include "getInterface.h"
-    
-    inline IBaseClientDLL* client;
-    inline IClientMode* clientMode;
 
-    void hookInterfaces();
+    // Interface pointers aquired by initInterfaces()    
+    inline IClientMode *clientMode;
+
+
+    // Gets all the interfaces we care about
+    void initInterfaces();
     
 }
