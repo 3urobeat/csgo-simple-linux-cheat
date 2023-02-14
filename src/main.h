@@ -4,7 +4,7 @@
  * Created Date: 02.04.2022 11:55:11
  * Author: 3urobeat
  * 
- * Last Modified: 04.04.2022 12:47:08
+ * Last Modified: 14.02.2023 15:55:01
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -36,3 +36,6 @@ inline std::string version = "0.0.1";
 
 inline int screenSizeX;
 inline int screenSizeY;
+
+
+extern void libUnload();

@@ -4,7 +4,7 @@
  * Created Date: 02.04.2022 18:18:52
  * Author: 3urobeat
  * 
- * Last Modified: 04.04.2022 12:59:03
+ * Last Modified: 14.02.2023 16:02:34
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -29,4 +29,7 @@ void Menu::showInfoPage() {
 
     ImGui::Text(("Resolution: " + std::to_string(screenSizeX) + "x" + std::to_string(screenSizeY)).c_str());
     ImGui::Text(("Bhop enabled: " + std::to_string(Config::Misc::bhopEnabled)).c_str());
+
+    // Provide unload button
+    if (ImGui::Button("Unhook", buttonWidth)) libUnload();
 }
