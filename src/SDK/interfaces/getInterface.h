@@ -4,7 +4,7 @@
  * Created Date: 03.04.2022 15:38:59
  * Author: 3urobeat
  * 
- * Last Modified: 13.02.2023 16:45:18
+ * Last Modified: 14.02.2023 18:13:46
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -15,7 +15,9 @@
  */
 
 
-#include <dlfcn.h>
+#pragma once
+
+#include "interfaces.h"
 
 
 // https://github.com/ValveSoftware/source-sdk-2013/blob/0d8dceea4310fde5706b3ce1c70609d72a38efdf/sp/src/public/tier1/interface.h#L69

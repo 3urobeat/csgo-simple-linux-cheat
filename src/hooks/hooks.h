@@ -4,7 +4,7 @@
  * Created Date: 01.04.2022 17:38:16
  * Author: 3urobeat
  * 
- * Last Modified: 14.02.2023 17:13:31
+ * Last Modified: 14.02.2023 18:33:34
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -15,7 +15,13 @@
  */
 
 
-#include <iostream>
+#pragma once
+
+
+#include "../main.h"
+
+#include "misc.h"
+#include "../SDK/interfaces/interfaces.h"
 
 
 namespace Hooks {

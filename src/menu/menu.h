@@ -4,7 +4,7 @@
  * Created Date: 01.04.2022 15:54:37
  * Author: 3urobeat
  * 
- * Last Modified: 13.02.2023 16:49:48
+ * Last Modified: 14.02.2023 18:30:37
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -14,6 +14,13 @@
  * You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>. 
  */
 
+
+#pragma once
+
+
+#include "../main.h"
+
+#include "config.h"
 
 #include "ImGUI/imgui.h"
 #include "ImGUI/GL/gl3w.h"

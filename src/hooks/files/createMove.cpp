@@ -4,7 +4,7 @@
  * Created Date: 03.04.2022 00:17:28
  * Author: 3urobeat
  * 
- * Last Modified: 13.02.2023 19:03:18
+ * Last Modified: 14.02.2023 18:05:36
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -15,7 +15,7 @@
  */
 
 
-#include "../../main.h"
+#include "../hooks.h"
 
 
 // Hooks createMove, which is called on every tick, and can "send" commands

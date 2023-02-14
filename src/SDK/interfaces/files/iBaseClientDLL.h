@@ -4,15 +4,16 @@
  * Created Date: 04.04.2022 20:04:28
  * Author: 3urobeat
  * 
- * Last Modified: 13.02.2023 21:38:43
+ * Last Modified: 14.02.2023 18:34:34
  * Modified By: 3urobeat
  */
 
 
 #pragma once
 
-#include "../../definitions.h"
-#include "../../misc.h"
+#include "../interfaces.h"
+
+#include "../../../hooks/misc.h"
 
 
 struct RecvProp;

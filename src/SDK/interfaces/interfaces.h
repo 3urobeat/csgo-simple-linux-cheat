@@ -4,7 +4,7 @@
  * Created Date: 03.04.2022 12:51:04
  * Author: 3urobeat
  * 
- * Last Modified: 13.02.2023 21:17:55
+ * Last Modified: 14.02.2023 18:14:41
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -17,6 +17,8 @@
 
 #pragma once
 
+
+#include "../sdk.h"
 
 #include "getInterface.h"
 

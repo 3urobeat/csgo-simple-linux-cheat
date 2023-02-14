@@ -4,7 +4,7 @@
  * Created Date: 02.04.2022 19:50:19
  * Author: 3urobeat
  * 
- * Last Modified: 13.02.2023 21:50:31
+ * Last Modified: 14.02.2023 18:12:59
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -13,6 +13,9 @@
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>. 
  */
+
+
+#pragma once
 
 
 // Stores all module settings in one place

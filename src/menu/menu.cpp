@@ -4,7 +4,7 @@
  * Created Date: 01.04.2022 15:50:14
  * Author: 3urobeat
  * 
- * Last Modified: 13.02.2023 16:49:44
+ * Last Modified: 14.02.2023 18:31:28
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -15,7 +15,7 @@
  */
 
 
-#include "../main.h"
+#include "menu.h"
 
 
 // onPollEvent function from https://github.com/seksea/gamesneeze/blob/7ec40e08a9964549672da6c735567ff613262097/src/core/menu/menu.cpp

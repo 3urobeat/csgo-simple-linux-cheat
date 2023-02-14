@@ -4,7 +4,7 @@
  * Created Date: 31.03.2022 22:52:29
  * Author: 3urobeat
  * 
- * Last Modified: 13.02.2023 19:58:14
+ * Last Modified: 14.02.2023 18:23:14
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -15,7 +15,6 @@
  */
 
 
-#include <thread>
 #include "main.h"
 
 
@@ -24,7 +23,7 @@ void logger(const char* str) { std::cout << str << std::endl; }
 void logger(std::string str) { std::cout << str.c_str() << std::endl; }
 
 
-// Assigning functions to be executed before and after main()
+// Assigning lib load and unload functions
 void __attribute__((constructor)) libLoad();
 void __attribute__((destructor))  libUnload();
 

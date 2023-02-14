@@ -4,7 +4,7 @@
  * Created Date: 05.04.2022 19:25:04
  * Author: 3urobeat
  * 
- * Last Modified: 14.02.2023 17:30:34
+ * Last Modified: 14.02.2023 18:35:35
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2023 3urobeat <https://github.com/HerrEurobeat>
@@ -15,11 +15,7 @@
  */
 
 
-#include "../../main.h"
-
-#include <stdint.h>
-#include <unistd.h>
-#include <sys/mman.h>
+#include "../hooks.h"
 
 
 int pageSize = sysconf(_SC_PAGE_SIZE);
