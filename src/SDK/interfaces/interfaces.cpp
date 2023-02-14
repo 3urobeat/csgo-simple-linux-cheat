@@ -4,7 +4,7 @@
  * Created Date: 03.04.2022 13:48:11
  * Author: 3urobeat
  * 
- * Last Modified: 13.02.2023 21:23:39
+ * Last Modified: 14.02.2023 17:33:30
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -18,6 +18,9 @@
 #include "../../main.h"
 
 
+typedef IClientMode* (*getClientModeFunc)();
+
+
 // Gets all the interfaces we care about
 void Interfaces::initInterfaces() {
 
@@ -25,9 +28,9 @@ void Interfaces::initInterfaces() {
     IBaseClientDLL *client = getInterface<IBaseClientDLL>("./csgo/bin/linux64/client_client.so", "VClient");
 
 
-    // Get clientMode // TODO: I might need typedefs, look at gamesneeze & Kali
+    // Get clientMode
     uintptr_t hudProcessInput = reinterpret_cast<uintptr_t>(getVTable(client)[10]);
     
-    clientMode = reinterpret_cast<IClientMode *>(getAbsoluteAddress(hudProcessInput + 11, 1, 5)); // Needed for createMove
-
+    getClientModeFunc getClientMode = reinterpret_cast<getClientModeFunc>(getAbsoluteAddress(hudProcessInput + 11, 1, 5)); // Needed for createMove
+    clientMode = getClientMode();
 }
