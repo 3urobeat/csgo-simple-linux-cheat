@@ -4,7 +4,7 @@
  * Created Date: 01.04.2022 17:38:16
  * Author: 3urobeat
  * 
- * Last Modified: 14.02.2023 15:45:26
+ * Last Modified: 14.02.2023 17:13:31
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -50,6 +50,7 @@ namespace Hooks {
     namespace CreateMove {
         
         using  createMoveFuncSignature = bool (*)(void *thisptr, float flInputSampleTime, CUserCmd *cmd);
+
         bool   createMoveFunc(void *thisptr, float flInputSampleTime, CUserCmd *cmd);
         inline createMoveFuncSignature originalCreateMove;
 

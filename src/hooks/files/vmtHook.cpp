@@ -4,7 +4,7 @@
  * Created Date: 05.04.2022 19:25:04
  * Author: 3urobeat
  * 
- * Last Modified: 14.02.2023 16:03:17
+ * Last Modified: 14.02.2023 17:30:34
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2023 3urobeat <https://github.com/HerrEurobeat>
@@ -39,21 +39,21 @@ void *Hooks::VMT::hookVMT(void *interface, void *hookFunction, int offset) {
     intptr_t vTableBase = *((intptr_t *) interface);
 
     // Add offset to our base pointer to find the function we are searching for
-    intptr_t vTableFunc = vTableBase + offset;
+    intptr_t vTableFunc = vTableBase + sizeof(intptr_t) * offset;
 
     // Get the original function
     intptr_t vTableOriginalFunc = *((intptr_t *) vTableFunc);
 
 
     // Change protection of the memory area we'd like to modify by adding WRITE permission
-    mprotect((void *) ((intptr_t) vTableBase & pageMask), pageMask, PROT_READ | PROT_WRITE | PROT_EXEC);
+    mprotect((void *) (vTableFunc & pageMask), pageSize, PROT_READ | PROT_WRITE | PROT_EXEC);
 
     // Overwrite the pointer to the original function in the VMT with the pointer to our function
     *((intptr_t *) vTableFunc) = (intptr_t) hookFunction;
     //memcpy(&vTableFunc, hookFunction, sizeof(intptr_t)); // Alternative?
 
     // Restore memory protection flags to rx only
-    mprotect((void *) ((intptr_t) vTableBase & pageMask), pageMask, PROT_READ | PROT_EXEC);
+    mprotect((void *) (vTableFunc & pageMask), pageSize, PROT_READ | PROT_EXEC);
 
 
     // Return pointer to the original function
