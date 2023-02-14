@@ -4,7 +4,7 @@
  * Created Date: 01.04.2022 17:38:16
  * Author: 3urobeat
  * 
- * Last Modified: 13.02.2023 16:47:49
+ * Last Modified: 14.02.2023 15:45:26
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -41,7 +41,7 @@ namespace Hooks {
     // VMT hook
     namespace VMT {
 
-        void* hookVMT(void* instance, void* hook, int offset);
+        void *hookVMT(void *interface, void *hookFunction, int offset);
 
     }
 
@@ -49,8 +49,8 @@ namespace Hooks {
     // createMove hook
     namespace CreateMove {
         
-        using createMoveFuncSignature = bool (*)(void *thisptr, float flInputSampleTime, CUserCmd *cmd);
-        bool createMoveFunc(void *thisptr, float flInputSampleTime, CUserCmd *cmd);
+        using  createMoveFuncSignature = bool (*)(void *thisptr, float flInputSampleTime, CUserCmd *cmd);
+        bool   createMoveFunc(void *thisptr, float flInputSampleTime, CUserCmd *cmd);
         inline createMoveFuncSignature originalCreateMove;
 
         inline bool sendPacket;

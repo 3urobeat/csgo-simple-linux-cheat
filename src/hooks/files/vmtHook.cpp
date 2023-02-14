@@ -1,35 +1,61 @@
-// Source: https://github.com/seksea/gamesneeze/blob/15f087eb882d5d5b8a1b333ab249cdb7fa17098b/src/core/hooks/vmt.cpp
-// TODO: Make myself
+/*
+ * File: vmtHook.cpp
+ * Project: csgo-simple-linux-cheat
+ * Created Date: 05.04.2022 19:25:04
+ * Author: 3urobeat
+ * 
+ * Last Modified: 14.02.2023 16:03:17
+ * Modified By: 3urobeat
+ * 
+ * Copyright (c) 2023 3urobeat <https://github.com/HerrEurobeat>
+ * 
+ * This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>. 
+ */
+
 
 #include "../../main.h"
+
 #include <stdint.h>
 #include <unistd.h>
 #include <sys/mman.h>
 
 
-int pagesize = sysconf(_SC_PAGE_SIZE);
-int pagemask = ~(pagesize - 1);
+int pageSize = sysconf(_SC_PAGE_SIZE);
+int pageMask = ~(pageSize - 1);
 
 
-int unprotect(void* region) {
-    mprotect((void*) ((intptr_t) region & pagemask), pagesize, PROT_READ|PROT_WRITE|PROT_EXEC);
-    return PROT_READ|PROT_EXEC;
-}
+/**
+ * Hooks a function by intercepting virtual method calls
+ * @param interface Pointer to the base address of the virtual table
+ * @param hookFunction Pointer to the function that should be hooked
+ * @param offset Position of the desired function in the virtual method table
+ * @returns Pointer to the original function
+ */
+void *Hooks::VMT::hookVMT(void *interface, void *hookFunction, int offset) {
+
+    // Get pointer to the first function in the vtable
+    intptr_t vTableBase = *((intptr_t *) interface);
+
+    // Add offset to our base pointer to find the function we are searching for
+    intptr_t vTableFunc = vTableBase + offset;
+
+    // Get the original function
+    intptr_t vTableOriginalFunc = *((intptr_t *) vTableFunc);
 
 
-void protect(void* region, int protection) {
-    mprotect((void*) ((intptr_t)region & pagemask), pagesize, protection);
-}
+    // Change protection of the memory area we'd like to modify by adding WRITE permission
+    mprotect((void *) ((intptr_t) vTableBase & pageMask), pageMask, PROT_READ | PROT_WRITE | PROT_EXEC);
+
+    // Overwrite the pointer to the original function in the VMT with the pointer to our function
+    *((intptr_t *) vTableFunc) = (intptr_t) hookFunction;
+    //memcpy(&vTableFunc, hookFunction, sizeof(intptr_t)); // Alternative?
+
+    // Restore memory protection flags to rx only
+    mprotect((void *) ((intptr_t) vTableBase & pageMask), pageMask, PROT_READ | PROT_EXEC);
 
 
-void *Hooks::VMT::hookVMT(void* instance, void* hook, int offset) {
-    intptr_t vtable   = *((intptr_t*) instance);
-    intptr_t entry    = vtable + sizeof(intptr_t) *offset;
-    intptr_t original = *((intptr_t*) entry);
-
-    int originalProtection = unprotect((void*) entry);
-    *((intptr_t*) entry)   = (intptr_t)hook;
-    protect((void*) entry, originalProtection);
-
-    return (void*) original;
+    // Return pointer to the original function
+    return (void *) vTableOriginalFunc;
 }
