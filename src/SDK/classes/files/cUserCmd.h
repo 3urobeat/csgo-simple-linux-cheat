@@ -4,19 +4,25 @@
  * Created Date: 04.04.2022 14:46:32
  * Author: 3urobeat
  * 
- * Last Modified: 14.02.2023 18:07:17
+ * Last Modified: 16.02.2023 17:07:28
  * Modified By: 3urobeat
+ * 
+ * This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
 
 #pragma once
 
-#include "../interfaces.h"
+#include "../classes.h"
 
 
 // https://github.com/ValveSoftware/source-sdk-2013/blob/0d8dceea4310fde5706b3ce1c70609d72a38efdf/sp/src/game/shared/usercmd.h
+
 struct CUserCmd {
-    virtual ~CUserCmd() {}; //this seems to be important
+    virtual ~CUserCmd() {}; // Destructor
+
     int command_number;
     int tick_count;
     Vector viewPoint;
