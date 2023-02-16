@@ -4,15 +4,17 @@
  * Created Date: 04.04.2022 20:04:28
  * Author: 3urobeat
  * 
- * Last Modified: 14.02.2023 18:34:34
+ * Last Modified: 16.02.2023 19:21:15
  * Modified By: 3urobeat
  */
 
 
 #pragma once
 
+
 #include "../interfaces.h"
 
+#include "../../helpers/definitions.h" // TODO: Why can't I remove these two?
 #include "../../../hooks/misc.h"
 
 
@@ -44,7 +46,7 @@ class ClientClass {
         RecvTable *m_pRecvTable;
         ClientClass* m_pNext;
         EClassIds m_ClassID;
-    };
+};
 
 
 class IBaseClientDLL {

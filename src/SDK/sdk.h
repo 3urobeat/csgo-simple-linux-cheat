@@ -4,7 +4,7 @@
  * Created Date: 14.02.2023 18:03:56
  * Author: 3urobeat
  * 
- * Last Modified: 16.02.2023 16:53:23
+ * Last Modified: 16.02.2023 19:17:04
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2023 3urobeat <https://github.com/HerrEurobeat>
@@ -20,8 +20,8 @@
 
 #include "../main.h"
 
-#include "definitions.h"
-#include "vector.h"
+#include "helpers/definitions.h"
+#include "helpers/vector.h"
 
 #include "interfaces/interfaces.h"
 #include "classes/classes.h"

@@ -4,7 +4,7 @@
  * Created Date: 04.04.2022 14:46:32
  * Author: 3urobeat
  * 
- * Last Modified: 16.02.2023 17:07:28
+ * Last Modified: 16.02.2023 19:28:11
  * Modified By: 3urobeat
  * 
  * This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -15,7 +15,10 @@
 
 #pragma once
 
+
 #include "../classes.h"
+
+#include "../../helpers/vector.h"
 
 
 // https://github.com/ValveSoftware/source-sdk-2013/blob/0d8dceea4310fde5706b3ce1c70609d72a38efdf/sp/src/game/shared/usercmd.h

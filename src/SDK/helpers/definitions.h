@@ -4,7 +4,7 @@
  * Created Date: 04.04.2022 20:25:38
  * Author: 3urobeat
  * 
- * Last Modified: 13.02.2023 16:50:40
+ * Last Modified: 16.02.2023 19:20:52
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -13,6 +13,9 @@
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>. 
  */
+
+
+#pragma once
 
 
 // I wasn't able to find this (I guess it would be in the SDK?) but the other cheats are using exactly this list sooo

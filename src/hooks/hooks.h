@@ -4,7 +4,7 @@
  * Created Date: 01.04.2022 17:38:16
  * Author: 3urobeat
  * 
- * Last Modified: 14.02.2023 18:33:34
+ * Last Modified: 16.02.2023 19:22:05
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -21,6 +21,8 @@
 #include "../main.h"
 
 #include "misc.h"
+
+#include "../SDK/classes/classes.h" // TODO: Why can't I remove these two?
 #include "../SDK/interfaces/interfaces.h"
 
 

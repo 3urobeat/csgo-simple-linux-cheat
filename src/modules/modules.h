@@ -4,7 +4,7 @@
  * Created Date: 02.04.2022 20:12:38
  * Author: 3urobeat
  * 
- * Last Modified: 14.02.2023 18:13:14
+ * Last Modified: 16.02.2023 19:17:41
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -16,6 +16,9 @@
 
 
 #pragma once
+
+
+#include "../main.h"
 
 
 // Registers all modules
