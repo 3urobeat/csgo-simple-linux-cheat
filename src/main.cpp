@@ -4,7 +4,7 @@
  * Created Date: 31.03.2022 22:52:29
  * Author: 3urobeat
  * 
- * Last Modified: 14.02.2023 18:23:14
+ * Last Modified: 16.02.2023 23:06:05
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -36,6 +36,9 @@ void MainThread() {
     // Initialize interfaces
     Interfaces::initInterfaces();
 
+    // Initialize netvars
+    NetvarManager::setup();
+
     // Initialize hooks
     Hooks::initHooks();
     
@@ -44,10 +47,12 @@ void MainThread() {
 
 // Entrypoint, is called on load
 void libLoad() {
+
     std::thread mainThread(MainThread); // Run the cheat itself in a new thread
     
     // ...and detach thread
     mainThread.detach();
+
 }
 
 

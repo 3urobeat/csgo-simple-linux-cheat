@@ -4,7 +4,7 @@
  * Created Date: 14.02.2023 18:03:56
  * Author: 3urobeat
  * 
- * Last Modified: 16.02.2023 19:17:04
+ * Last Modified: 16.02.2023 23:13:42
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2023 3urobeat <https://github.com/HerrEurobeat>
@@ -21,7 +21,39 @@
 #include "../main.h"
 
 #include "helpers/definitions.h"
+#include "helpers/fnv.h"
 #include "helpers/vector.h"
 
 #include "interfaces/interfaces.h"
 #include "classes/classes.h"
+
+#include "interfaces/files/iBaseClientDLL.h" // TODO: REMOVE
+
+
+#include <unordered_map>
+
+
+namespace NetvarManager {
+
+    /**
+     * Recursively dump all netvars in a table
+     * Tutorial used to understand what's happening: https://www.youtube.com/watch?v=VCsNZ0GRVzo
+     * @param baseClass Network Name of the client class
+     * @param table RecvTable of the client class
+     * @param offset Pass 0 on initial call, gets incremented by recursive call
+     */
+    void dump(const char *baseClass, RecvTable *table, uint32_t offset);
+
+    // Dumps all netvars
+    void setup();
+
+    // Map which stores all the offsets we retreived
+    inline std::unordered_map<uint32_t, uint32_t> netvarMap;
+
+    // Macro to access our retreived netvars (backslashes are for multi-line)
+    #define NETVAR(funcName, netvar, type) type& funcName() { \
+        static auto offset = NetvarManager::netvarMap[fnv::hashConst(netvar)]; \
+        return *reinterpret_cast<type *>(uintptr_t(this) + offset); \
+    }
+
+}
