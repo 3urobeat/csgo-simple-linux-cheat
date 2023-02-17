@@ -4,7 +4,7 @@
  * Created Date: 02.04.2022 19:50:19
  * Author: 3urobeat
  * 
- * Last Modified: 14.02.2023 18:12:59
+ * Last Modified: 16.02.2023 21:59:58
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -38,6 +38,8 @@ namespace Config {
 
     namespace Misc {
         inline bool bhopEnabled = false;
+
+        inline bool radarEnabled = false;
     }
     
 }

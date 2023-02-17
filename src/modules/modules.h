@@ -4,7 +4,7 @@
  * Created Date: 02.04.2022 20:12:38
  * Author: 3urobeat
  * 
- * Last Modified: 16.02.2023 19:17:41
+ * Last Modified: 17.02.2023 15:46:19
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -18,14 +18,15 @@
 #pragma once
 
 
-#include "../main.h"
-
-
 // Registers all modules
 namespace Modules {
 
     namespace Bhop {
-        void run(CUserCmd* cmd);
+        void run(CUserCmd *cmd);
+    }
+
+    namespace Radar {
+        void run();
     }
     
 }

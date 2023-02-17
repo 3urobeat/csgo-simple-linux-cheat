@@ -4,7 +4,7 @@
  * Created Date: 16.02.2023 16:28:14
  * Author: 3urobeat
  * 
- * Last Modified: 16.02.2023 22:53:27
+ * Last Modified: 17.02.2023 15:49:36
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2023 3urobeat <https://github.com/HerrEurobeat>
@@ -49,7 +49,6 @@ void NetvarManager::dump(const char *baseClass, RecvTable *table, uint32_t offse
 
         netvarMap[fnv::hash(name)] = thisProp->m_Offset + offset;
 
-        std::cout << name << "->" << (thisProp->m_Offset + offset) << std::endl;
 
         // TODO: What does proxy spotted thing do?
     }
@@ -71,4 +70,9 @@ void NetvarManager::setup() {
 
     }
 
+}
+
+
+uint32_t NetvarManager::getOffset(const char *netvar) {
+    return netvarMap[fnv::hashConst(netvar)];
 }

@@ -1,10 +1,10 @@
 /*
- * File: miscPage.cpp
+ * File: bhop.cpp
  * Project: csgo-simple-linux-cheat
- * Created Date: 02.04.2022 17:36:52
+ * Created Date: 02.04.2022 20:31:50
  * Author: 3urobeat
  * 
- * Last Modified: 16.02.2023 22:00:25
+ * Last Modified: 17.02.2023 16:10:25
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -15,13 +15,20 @@
  */
 
 
-#include "../../main.h"
+#include "../modules.h"
 
 
-void Menu::showMiscPage() {
+/**
+ * Misc: Bunny Hop module
+ * @param cmd createMove cmd that will be send to the server
+ */
+void Modules::Bhop::run(CUserCmd *cmd) {
     
-    ImGui::Checkbox("Bhop", &Config::Misc::bhopEnabled);
+    // Check if this module should run
+    if (!Config::Misc::bhopEnabled) return;            // Check if module is enabled
+    if (!ImGui::IsKeyDown(ImGuiKey_Space)) return; // Only bother if user tries to bhop (aka holding space bar) (using ImGui's key press functions to make checking easier)
 
-    ImGui::Checkbox("Radar", &Config::Misc::radarEnabled);
+    // Send jump command
+    cmd->buttons &= ~IN_JUMP;
 
 }

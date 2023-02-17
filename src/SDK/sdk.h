@@ -4,7 +4,7 @@
  * Created Date: 14.02.2023 18:03:56
  * Author: 3urobeat
  * 
- * Last Modified: 16.02.2023 23:13:42
+ * Last Modified: 17.02.2023 15:21:10
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2023 3urobeat <https://github.com/HerrEurobeat>
@@ -50,10 +50,17 @@ namespace NetvarManager {
     // Map which stores all the offsets we retreived
     inline std::unordered_map<uint32_t, uint32_t> netvarMap;
 
-    // Macro to access our retreived netvars (backslashes are for multi-line)
-    #define NETVAR(funcName, netvar, type) type& funcName() { \
-        static auto offset = NetvarManager::netvarMap[fnv::hashConst(netvar)]; \
-        return *reinterpret_cast<type *>(uintptr_t(this) + offset); \
-    }
+    /**
+     * Get offset by name from our map
+     * @param netvar Netvar name formatted as table->name
+     * @returns offset
+     */
+    uint32_t getOffset(const char *netvar);
+
+    // Macro to access our retreived netvars (backslashes are for multi-line) (doesn't work atm, but allows for this syntax: NETVAR(spotted, "CBaseEntity->m_bSpotted", bool))
+    /* #define NETVAR(funcName, netvar, type) type& funcName() { \
+        static auto offset = netvarMap[fnv::hashConst(netvar)]; \
+        return *reinterpret_cast<type *>((uintptr_t) this + offset); \
+    } */
 
 }
