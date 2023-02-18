@@ -4,7 +4,7 @@
  * Created Date: 31.03.2022 22:52:29
  * Author: 3urobeat
  * 
- * Last Modified: 16.02.2023 23:06:05
+ * Last Modified: 18.02.2023 15:44:21
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -41,6 +41,12 @@ void MainThread() {
 
     // Initialize hooks
     Hooks::initHooks();
+
+    
+    // Temporary main loop for modules which aren't createMove dependent
+    while(true) {
+        Modules::Radar::run();
+    }
     
 }
 

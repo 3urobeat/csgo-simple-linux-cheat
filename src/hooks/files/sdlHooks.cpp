@@ -6,7 +6,7 @@
 
 
 template <typename T>
-static constexpr auto relativeToAbsolute(std::uintptr_t address) noexcept
+static constexpr auto relativeToAbsolute(uintptr_t address) noexcept
 {
     return (T)(address + 4 + *reinterpret_cast<std::int32_t*>(address));
 }
@@ -47,8 +47,8 @@ void Hooks::SDL::hookSDL() {
 
 // Unhook SDL, called on unload
 void Hooks::SDL::unhookSDL() {
-    *reinterpret_cast<decltype(swapWindow)*>(swapWindowAddr) = swapWindow;
-    *reinterpret_cast<decltype(pollEvent)*>(pollEventAddr) = pollEvent;
+    *reinterpret_cast<decltype(swapWindow) *>(swapWindowAddr) = swapWindow;
+    *reinterpret_cast<decltype(pollEvent) *>(pollEventAddr) = pollEvent;
     
     /* if (*reinterpret_cast<decltype(swapWindow)*>(swapWindowAddr)!=swapWindow || *reinterpret_cast<decltype(pollEvent)*>(pollEventAddr)!=pollEvent) {
         //Error

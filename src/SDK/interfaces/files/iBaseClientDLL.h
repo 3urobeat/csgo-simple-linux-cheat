@@ -4,7 +4,7 @@
  * Created Date: 04.04.2022 20:04:28
  * Author: 3urobeat
  * 
- * Last Modified: 16.02.2023 19:21:15
+ * Last Modified: 18.02.2023 14:39:00
  * Modified By: 3urobeat
  */
 
@@ -12,10 +12,9 @@
 #pragma once
 
 
-#include "../interfaces.h"
+#include <cstdint>
 
-#include "../../helpers/definitions.h" // TODO: Why can't I remove these two?
-#include "../../../hooks/misc.h"
+#include "../../helpers/definitions.h"
 
 
 struct RecvProp;

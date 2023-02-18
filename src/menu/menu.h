@@ -4,7 +4,7 @@
  * Created Date: 01.04.2022 15:54:37
  * Author: 3urobeat
  * 
- * Last Modified: 14.02.2023 18:30:37
+ * Last Modified: 18.02.2023 13:05:25
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -19,8 +19,6 @@
 
 
 #include "../main.h"
-
-#include "config.h"
 
 #include "ImGUI/imgui.h"
 #include "ImGUI/GL/gl3w.h"

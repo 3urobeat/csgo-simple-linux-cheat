@@ -4,7 +4,7 @@
  * Created Date: 16.02.2023 16:28:14
  * Author: 3urobeat
  * 
- * Last Modified: 17.02.2023 15:49:36
+ * Last Modified: 18.02.2023 13:01:28
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2023 3urobeat <https://github.com/HerrEurobeat>
@@ -70,9 +70,4 @@ void NetvarManager::setup() {
 
     }
 
-}
-
-
-uint32_t NetvarManager::getOffset(const char *netvar) {
-    return netvarMap[fnv::hashConst(netvar)];
 }

@@ -1,10 +1,10 @@
 /*
  * File: radar.cpp
- * Project: misc
+ * Project: csgo-simple-linux-cheat
  * Created Date: 16.02.2023 21:33:28
  * Author: 3urobeat
  * 
- * Last Modified: 17.02.2023 16:09:53
+ * Last Modified: 18.02.2023 15:49:59
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2023 3urobeat <https://github.com/HerrEurobeat>
@@ -36,7 +36,7 @@ void Modules::Radar::run() {
         // TODO: Ignore if not a player
         // TODO: Ignore if dead
 
-        *entity->spotted() = true; // Set spotted to true so it will appear on the radar
+        entity->spotted() = true; // Set spotted to true so it will appear on the radar
     }
 
 }

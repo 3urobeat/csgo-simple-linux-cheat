@@ -4,7 +4,7 @@
  * Created Date: 02.04.2022 11:55:11
  * Author: 3urobeat
  * 
- * Last Modified: 14.02.2023 18:35:38
+ * Last Modified: 18.02.2023 13:27:31
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -18,26 +18,32 @@
 #pragma once
 
 
+// Libs
 #include <iostream>
 #include <string>
 #include <thread>
 #include <dlfcn.h>
 #include <stdint.h>
+#include <cstring>
+#include <cstdint>
 #include <unistd.h>
+#include <unordered_map>
 #include <sys/mman.h>
 #include <SDL2/SDL.h>
 
 
+// Export functions declared in main.cpp
 extern void logger(const char* str);
 extern void logger(std::string str);
 
 
-#include "hooks/hooks.h"
+// Import subfolder files
+#include "menu/config.h"
+#include "SDK/helpers/misc.h"
 #include "SDK/sdk.h"
-
-#include "menu/menu.h"
-
 #include "modules/modules.h"
+#include "hooks/hooks.h"
+#include "menu/menu.h"
 
 
 inline std::string version = "0.0.1";

@@ -4,7 +4,7 @@
  * Created Date: 16.02.2023 21:41:39
  * Author: 3urobeat
  * 
- * Last Modified: 17.02.2023 15:28:02
+ * Last Modified: 18.02.2023 15:29:15
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2023 3urobeat <https://github.com/HerrEurobeat>
@@ -18,12 +18,10 @@
 #pragma once
 
 
-#include "../../../main.h"
+#include "../netvarManager.h"
 
 
 class CEntity {
     public:
-        bool *spotted() {
-            return (bool *) ((uintptr_t) this + (NetvarManager::getOffset("CBaseEntity->m_bSpotted")));
-        }
+        NETVAR(spotted, "CBaseEntity->m_bSpotted", bool);
 };

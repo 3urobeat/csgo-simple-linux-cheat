@@ -4,7 +4,7 @@
  * Created Date: 02.04.2022 20:12:38
  * Author: 3urobeat
  * 
- * Last Modified: 17.02.2023 15:46:19
+ * Last Modified: 18.02.2023 15:33:56
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -16,6 +16,10 @@
 
 
 #pragma once
+
+
+#include "../main.h"
+#include "../SDK/classes/cUserCmd.h"
 
 
 // Registers all modules
