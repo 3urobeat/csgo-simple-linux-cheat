@@ -4,7 +4,7 @@
  * Created Date: 02.04.2022 20:12:38
  * Author: 3urobeat
  * 
- * Last Modified: 18.02.2023 15:33:56
+ * Last Modified: 19.02.2023 11:57:14
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -25,6 +25,12 @@
 // Registers all modules
 namespace Modules {
 
+    // Visuals
+    namespace ESP {
+        void run();
+    }
+
+    // Misc
     namespace Bhop {
         void run(CUserCmd *cmd);
     }

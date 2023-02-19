@@ -1,13 +1,13 @@
 /*
- * File: visualsPage.cpp
+ * File: esp.cpp
  * Project: csgo-simple-linux-cheat
- * Created Date: 02.04.2022 17:36:46
+ * Created Date: 19.02.2023 11:49:51
  * Author: 3urobeat
  * 
- * Last Modified: 19.02.2023 11:58:25
+ * Last Modified: 19.02.2023 11:59:04
  * Modified By: 3urobeat
  * 
- * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
+ * Copyright (c) 2023 3urobeat <https://github.com/HerrEurobeat>
  * 
  * This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
@@ -15,11 +15,15 @@
  */
 
 
-#include "../../main.h"
+#include "../modules.h"
 
 
-void Menu::showVisualsPage() {
+/**
+ * Visuals: Draws a box around all entities, visible through walls
+ */
+void Modules::ESP::run() {
     
-    ImGui::Checkbox("ESP", &Config::Visuals::espEnabled);
+    // Check if this module should run
+    if (!Config::Visuals::espEnabled) return; // Check if module is enabled
 
 }

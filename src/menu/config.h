@@ -4,7 +4,7 @@
  * Created Date: 02.04.2022 19:50:19
  * Author: 3urobeat
  * 
- * Last Modified: 16.02.2023 21:59:58
+ * Last Modified: 19.02.2023 11:58:06
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -33,7 +33,7 @@ namespace Config {
     }
 
     namespace Visuals {
-
+        inline bool espEnabled = false;
     }
 
     namespace Misc {
