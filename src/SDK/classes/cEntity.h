@@ -4,7 +4,7 @@
  * Created Date: 16.02.2023 21:41:39
  * Author: 3urobeat
  * 
- * Last Modified: 18.02.2023 15:29:15
+ * Last Modified: 19.02.2023 21:04:19
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2023 3urobeat <https://github.com/HerrEurobeat>
@@ -18,10 +18,41 @@
 #pragma once
 
 
+#include "../interfaces/files/ivModelRenderer.h"
 #include "../netvarManager.h"
+#include "../helpers/vector.h"
+
+
+class ICollideable {
+    public:
+        virtual void pad0();
+        virtual const Vector& OBBMins() const;
+        virtual const Vector& OBBMaxs() const;
+};
 
 
 class CEntity {
     public:
+        // Note because I might be stupid: This works, don't change it
+        virtual void *networkable() = 0;
+        virtual void *renderable() = 0;
+        virtual ClientClass *clientClass() = 0;
+        virtual bool dormant() = 0;
+        virtual int index() = 0;
+        virtual model_t* model() = 0;
+        virtual bool setupBones(matrix3x4_t* pBoneMatrix, int nMaxBones, int nBoneMask, float flCurTime = 0) = 0;
+        virtual bool shouldDraw() = 0;
+        virtual const Vector& origin() = 0;
+        virtual bool isPlayer() = 0;
+
+        NETVAR(collideable, "CBaseEntity->m_Collision", ICollideable);
+        NETVAR(team, "CBaseEntity->m_iTeamNum", int);
         NETVAR(spotted, "CBaseEntity->m_bSpotted", bool);
+};
+
+
+// CPlayer inherits from CEntity
+class CPlayer : public CEntity {
+    public:
+
 };
