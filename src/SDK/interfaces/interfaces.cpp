@@ -4,7 +4,7 @@
  * Created Date: 03.04.2022 13:48:11
  * Author: 3urobeat
  * 
- * Last Modified: 16.02.2023 23:02:28
+ * Last Modified: 19.02.2023 20:07:25
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -25,8 +25,9 @@ typedef IClientMode* (*getClientModeFunc)();
 void Interfaces::initInterfaces() {
 
     // Get interfaces of the functions I'm trying to "overwrite"/intercept/whatever
-    client     = getInterface<IBaseClientDLL>("./csgo/bin/linux64/client_client.so", "VClient");
-    entityList = getInterface<IEntityList>("./csgo/bin/linux64/client_client.so", "VClientEntityList");
+    client       = getInterface<IBaseClientDLL>("./csgo/bin/linux64/client_client.so", "VClient");
+    entityList   = getInterface<IEntityList>("./csgo/bin/linux64/client_client.so", "VClientEntityList");
+    engineClient = getInterface<IVEngineClient>("./bin/linux64/engine_client.so", "VEngineClient");
 
 
     // Get clientMode

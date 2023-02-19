@@ -4,7 +4,7 @@
  * Created Date: 03.04.2022 12:51:04
  * Author: 3urobeat
  * 
- * Last Modified: 18.02.2023 13:06:10
+ * Last Modified: 19.02.2023 19:52:15
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2022 3urobeat <https://github.com/HerrEurobeat>
@@ -23,14 +23,16 @@
 #include "files/iBaseClientDLL.h"
 #include "files/iClientEntityList.h"
 #include "files/iClientMode.h"
+#include "files/ivEngineClient.h"
 
 
 namespace Interfaces {
 
     // Pointer for every interface which gets populated at runtime
-    inline IBaseClientDLL *client     = nullptr;
-    inline IClientMode    *clientMode = nullptr;
-    inline IEntityList    *entityList = nullptr;
+    inline IBaseClientDLL *client       = nullptr;
+    inline IClientMode    *clientMode   = nullptr;
+    inline IEntityList    *entityList   = nullptr;
+    inline IVEngineClient *engineClient = nullptr;
 
     // Gets all the interfaces we care about
     void initInterfaces();
