@@ -4,7 +4,7 @@
  * Created Date: 16.02.2023 21:33:28
  * Author: 3urobeat
  * 
- * Last Modified: 18.02.2023 15:49:59
+ * Last Modified: 20.02.2023 13:35:39
  * Modified By: 3urobeat
  * 
  * Copyright (c) 2023 3urobeat <https://github.com/HerrEurobeat>
@@ -27,9 +27,8 @@ void Modules::Radar::run() {
     if (!Config::Misc::radarEnabled) return; // Check if module is enabled
 
 
-    // TODO: Don't hardcode 64?
-    // Iterate over all entities that can be in one map
-    for (int i = 0; i <= 64; i++) {
+    // Iterate over all entities (start at 1 as 0 is the world entity)
+    for (int i = 1; i <= Interfaces::engineClient->GetMaxClients(); i++) {
         CEntity *entity = Interfaces::entityList->GetClientEntity(i); // Get this entity
 
         if (!entity) continue; // Ignore if invalid
